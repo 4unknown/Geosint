@@ -84,11 +84,6 @@ export default function Home() {
   const imgWrapRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (sessionStorage.getItem('geosint_failed') === 'true') {
-      setBanned(true);
-      return;
-    }
-
     const n = new Date();
     const p = (v: number) => String(v).padStart(2, '0');
     setTimestamp(
@@ -234,8 +229,7 @@ export default function Home() {
   };
 
   const handleExit = () => {
-    sessionStorage.setItem('geosint_failed', 'true');
-    window.location.replace('about:blank');
+    window.location.reload();
   };
 
   if (banned) {

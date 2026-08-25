@@ -3,7 +3,7 @@ import { NextResponse } from 'next/server';
 // 1. Specific private variables as requested
 const Image_Latitude = 48.8566;
 const Image_Longitude = 2.3522;
-const selected_km_distance_for_success = 20;
+const selected_km_distance_for_success = 50;
 const flag = "CTF{y0u_f0und_p4r1s}";
 
 // Haversine formula calculation helper
