@@ -22,6 +22,7 @@ const Marker = dynamic(
 // ================================================================
 const CONFIG = {
   imageUrl: "https://picsum.photos/seed/geosint-paris-42/1400/900.jpg",
+  Selected_Image: "location.jpg",
   canZoom: false,
   canPan: false,
   difficulty: "easy"
@@ -276,6 +277,15 @@ export default function Home() {
             GEOSINT
           </div>
           <div className="flex items-center gap-[14px]">
+            <a
+              href={CONFIG.imageUrl}
+              download={CONFIG.Selected_Image}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-mono text-[0.65rem] tracking-[2px] px-3 py-1.5 bg-[#00e68a]/10 border border-[#00e68a] text-[#00e68a] rounded-[2px] hover:bg-[#00e68a] hover:text-[#070a10] transition-all duration-300 uppercase flex items-center gap-2"
+            >
+              <i className="fa-solid fa-download"></i> DOWNLOAD IMAGE
+            </a>
             <span className={`font-mono text-[0.65rem] tracking-[3px] px-[14px] py-[3px] border rounded-[2px] uppercase ${CONFIG.difficulty === 'easy' ? 'text-[#00e68a] border-[#00e68a] bg-[rgba(0,230,138,0.12)]' : CONFIG.difficulty === 'medium' ? 'text-[#f59e0b] border-[#f59e0b] bg-[rgba(245,158,11,0.1)]' : 'text-[#ff2d55] border-[#ff2d55] bg-[rgba(255,45,85,0.12)]'}`}>
               {CONFIG.difficulty}
             </span>
