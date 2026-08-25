@@ -21,11 +21,12 @@ const Marker = dynamic(
 //  CHALLENGE CONFIGURATION
 // ================================================================
 const CONFIG = {
-  imageUrl: "https://picsum.photos/seed/geosint-paris-42/1400/900.jpg",
+  imageUrl: "/Somewhere_Image.jpg",
   Selected_Image: "location.jpg",
   canZoom: false,
   canPan: false,
-  difficulty: "easy"
+  difficulty: "easy",
+  start_message: "WELCOME AGENT. WE HAVE DETECTED AN ENEMY COMMUNICATIONS NODE AT AN UNKNOWN SATELLITE COORDINATE. ANALYZE THE INTERCEPTED SATELLITE IMAGERY CAREFULLY AND TRIANGULATE THE EXACT GEOSPATIAL LOCATION. TIME IS OF THE ESSENCE."
 };
 
 function MapClickHandler({ onMapClick, submitted }: { onMapClick: (latlng: { lat: number; lng: number }) => void; submitted: boolean }) {
@@ -54,6 +55,7 @@ function MapClickHandler({ onMapClick, submitted }: { onMapClick: (latlng: { lat
 
 export default function Home() {
   const [banned, setBanned] = useState(false);
+  const [showBriefing, setShowBriefing] = useState(true);
   const [initDone, setInitDone] = useState(false);
   const [gameVisible, setGameVisible] = useState(false);
   const [timestamp, setTimestamp] = useState('');
@@ -88,7 +90,7 @@ export default function Home() {
     const n = new Date();
     const p = (v: number) => String(v).padStart(2, '0');
     setTimestamp(
-      `${n.getFullYear()}-${p(n.getMonth() + 1)}-${p(n.getDate())} ${p(n.getHours())}:${p(n.getMinutes())}:${p(n.getSeconds())} UTC`
+      \-\-\ \:\:\ UTC
     );
 
     import('leaflet').then((L) => {
@@ -101,13 +103,16 @@ export default function Home() {
       setGuessIcon(icon);
     });
 
+    return () => {};
+  }, []);
+
+  const handleStartContinue = () => {
+    setShowBriefing(false);
     const timer = setTimeout(() => {
       setInitDone(true);
       setTimeout(() => setGameVisible(true), 100);
     }, 2100);
-
-    return () => clearTimeout(timer);
-  }, []);
+  };
 
   // Image wheel zoom
   useEffect(() => {
@@ -165,7 +170,7 @@ export default function Home() {
     const player_guessed_latitude = latlng.lat;
     const player_guessed_longitude = latlng.lng;
     setGuessPos([player_guessed_latitude, player_guessed_longitude]);
-    setHintText(`GUESS: ${player_guessed_latitude.toFixed(4)}, ${player_guessed_longitude.toFixed(4)}`);
+    setHintText(GUESS: \, \);
     setHintActive(true);
   };
 
@@ -251,12 +256,73 @@ export default function Home() {
 
   return (
     <>
+      {/* Briefing / Start Message Screen */}
+      {showBriefing && (
+        <div
+          id="briefing-screen"
+          className="fixed inset-0 z-[10000] bg-[#070a10] flex items-center justify-center p-4 select-none"
+        >
+          {/* Futuristic grid overlay background specifically for briefing */}
+          <div className="absolute inset-0 bg-briefing-grid opacity-10 pointer-events-none"></div>
+          
+          <div className="relative w-full max-w-[650px] bg-[#0c1019]/90 border border-[#00e68a]/30 p-8 md:p-12 rounded-[4px] shadow-[0_0_50px_rgba(0,230,138,0.15)] flex flex-col gap-6 overflow-hidden">
+            {/* Tech decorative corners */}
+            <div className="vc-b tl-b"></div>
+            <div className="vc-b tr-b"></div>
+            <div className="vc-b bl-b"></div>
+            <div className="vc-b br-b"></div>
+            
+            {/* Top header status */}
+            <div className="flex justify-between items-center border-b border-[#00e68a]/20 pb-4">
+              <div className="font-mono text-[0.65rem] tracking-[4px] text-[#00e68a]/70 flex items-center gap-2">
+                <span className="w-2 h-2 bg-[#00e68a] rounded-full animate-ping"></span>
+                SYSTEM: SECURE TRANSMISSION
+              </div>
+              <div className="font-mono text-[0.65rem] tracking-[2px] text-[#2e3f5a]">
+                LOC-INTEL // CLASSIFIED
+              </div>
+            </div>
+
+            {/* Title / Main Subject */}
+            <div className="flex flex-col gap-1">
+              <h1 className="font-mono text-2xl md:text-3xl tracking-[6px] text-[#00e68a] drop-shadow-[0_0_10px_rgba(0,230,138,0.4)]">
+                MISSION BRIEFING
+              </h1>
+              <div className="h-[2px] w-[60px] bg-[#00e68a]"></div>
+            </div>
+
+            {/* Custom Briefing Message Box */}
+            <div className="bg-[#050810] border border-[#00e68a]/10 p-5 rounded-[2px] min-h-[140px] flex items-center">
+              <p className="font-mono text-[0.9rem] leading-relaxed text-[#e4eaf4] tracking-[1px]">
+                {CONFIG.start_message}
+              </p>
+            </div>
+
+            {/* Divider */}
+            <div className="border-t border-[#00e68a]/10 pt-6 flex justify-between items-center">
+              <div className="font-mono text-[0.65rem] text-[#2e3f5a] tracking-[1.5px] max-sm:hidden">
+                PRESS TO INITIALIZE TARGETING SEQUENCE
+              </div>
+              
+              {/* Pulsing Continue button with Arrow */}
+              <button
+                onClick={handleStartContinue}
+                className="group ml-auto font-mono text-[0.95rem] tracking-[3px] py-2.5 px-6 bg-transparent text-[#00e68a] border border-[#00e68a] rounded-[2px] cursor-pointer transition-all duration-300 uppercase relative overflow-hidden hover:text-[#070a10] hover:shadow-[0_0_25px_rgba(0,230,138,0.4)] flex items-center gap-3 before:content-[''] before:absolute before:inset-0 before:bg-[#00e68a] before:scale-x-0 before:origin-left before:transition-transform before:duration-300 before:z-[-1] hover:before:scale-x-100"
+              >
+                CONTINUE 
+                <span className="inline-block transform transition-transform duration-300 group-hover:translate-x-1.5">
+                  &rarr;
+                </span>
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Init Screen */}
       <div
         id="init-screen"
-        className={`fixed inset-0 z-[9999] bg-[#070a10] flex flex-col items-center justify-center gap-6 transition-opacity duration-600 ${
-          initDone ? 'opacity-0 pointer-events-none' : 'opacity-100'
-        }`}
+        className={ixed inset-0 z-[9999] bg-[#070a10] flex flex-col items-center justify-center gap-6 transition-opacity duration-600 \}
       >
         <div className="font-mono text-[1.6rem] tracking-[8px] text-[#00e68a]">GEOSINT</div>
         <div className="w-[240px] h-[2px] bg-[#172038] rounded-[2px] overflow-hidden">
@@ -286,7 +352,7 @@ export default function Home() {
             >
               <i className="fa-solid fa-download"></i> DOWNLOAD IMAGE
             </a>
-            <span className={`font-mono text-[0.65rem] tracking-[3px] px-[14px] py-[3px] border rounded-[2px] uppercase ${CONFIG.difficulty === 'easy' ? 'text-[#00e68a] border-[#00e68a] bg-[rgba(0,230,138,0.12)]' : CONFIG.difficulty === 'medium' ? 'text-[#f59e0b] border-[#f59e0b] bg-[rgba(245,158,11,0.1)]' : 'text-[#ff2d55] border-[#ff2d55] bg-[rgba(255,45,85,0.12)]'}`}>
+            <span className={ont-mono text-[0.65rem] tracking-[3px] px-[14px] py-[3px] border rounded-[2px] uppercase \}>
               {CONFIG.difficulty}
             </span>
           </div>
@@ -296,7 +362,7 @@ export default function Home() {
           <div id="image-panel" className="relative overflow-hidden bg-black border-r border-[#172038] max-md:border-r-0 max-md:border-b max-md:border-[#172038]">
             <div
               ref={imgWrapRef}
-              className={`w-full h-full overflow-hidden relative ${CONFIG.canPan ? 'cursor-grab' : ''} ${panning ? 'cursor-grabbing' : ''}`}
+              className={w-full h-full overflow-hidden relative \ \}
               onMouseDown={handleMouseDown}
             >
               {!imageLoaded && !imageError && (
@@ -313,9 +379,9 @@ export default function Home() {
                 alt="Challenge location"
                 onLoad={() => setImageLoaded(true)}
                 onError={() => setImageError(true)}
-                className={`w-full h-full object-cover transform-origin-center transition-transform duration-75 select-none [-webkit-user-drag:none] ${!CONFIG.canZoom && !CONFIG.canPan ? 'pointer-events-none' : ''}`}
+                className={w-full h-full object-cover transform-origin-center transition-transform duration-75 select-none [-webkit-user-drag:none] \}
                 style={{
-                  transform: `translate(${iTx}px, ${iTy}px) scale(${iScale})`,
+                  transform: 	ranslate(\px, \px) scale(\),
                 }}
               />
               <div className="scanl"></div>
@@ -343,7 +409,7 @@ export default function Home() {
         </main>
 
         <footer className="relative z-10 h-[58px] flex items-center justify-center gap-[18px] bg-[#0c1019] border-t border-[#172038]">
-          <span className={`font-mono text-[0.65px] tracking-[1px] transition-colors duration-300 text-[#2e3f5a] ${hintActive ? 'text-[#00b4d8]' : ''}`}>
+          <span className={ont-mono text-[0.65px] tracking-[1px] transition-colors duration-300 text-[#2e3f5a] \}>
             {hintText}
           </span>
           <button
@@ -396,9 +462,7 @@ export default function Home() {
       {/* Toast */}
       <div
         id="copy-toast"
-        className={`fixed bottom-[30px] left-1/2 -translate-x-1/2 font-mono text-[0.7rem] text-[#00e68a] tracking-[2px] bg-[#111827] border border-[#00e68a] py-[8px] px-[20px] z-[2000] transition-all duration-300 ease-in-out pointer-events-none ${
-          toastVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
-        }`}
+        className={ixed bottom-[30px] left-1/2 -translate-x-1/2 font-mono text-[0.7rem] text-[#00e68a] tracking-[2px] bg-[#111827] border border-[#00e68a] py-[8px] px-[20px] z-[2000] transition-all duration-300 ease-in-out pointer-events-none \}
       >
         COPIED TO CLIPBOARD
       </div>
