@@ -272,17 +272,6 @@ export default function Home() {
             <div className="vc-b bl-b"></div>
             <div className="vc-b br-b"></div>
             
-            {/* Top header status */}
-            <div className="flex justify-between items-center border-b border-[#00e68a]/20 pb-4">
-              <div className="font-mono text-[0.65rem] tracking-[4px] text-[#00e68a]/70 flex items-center gap-2">
-                <span className="w-2 h-2 bg-[#00e68a] rounded-full animate-ping"></span>
-                SYSTEM: SECURE TRANSMISSION
-              </div>
-              <div className="font-mono text-[0.65rem] tracking-[2px] text-[#2e3f5a]">
-                LOC-INTEL // CLASSIFIED
-              </div>
-            </div>
-
             {/* Title / Main Subject */}
             <div className="flex flex-col gap-1">
               <h1 className="font-mono text-2xl md:text-3xl tracking-[6px] text-[#00e68a] drop-shadow-[0_0_10px_rgba(0,230,138,0.4)]">
