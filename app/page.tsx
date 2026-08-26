@@ -206,7 +206,7 @@ export default function Home() {
       setTimeout(() => {
         if (data.success) {
           setSuccessVisible(true);
-          const retrievedFlag = data.flag || "CTF{y0u_f0und_p4r1s}";
+          const retrievedFlag = data.flag || "I wondered whether I should DoorDash my food 2025 times, or maybe 41096 times. \nNot that the number of times mattersâ€”itâ€™s more about whether Iâ€™m the one placing the order.";
           let i = 0;
           const iv = setInterval(() => {
             if (i < retrievedFlag.length) {
@@ -228,7 +228,7 @@ export default function Home() {
   };
 
   const handleCopyFlag = () => {
-    navigator.clipboard.writeText("CTF{y0u_f0und_p4r1s}").then(() => {
+    navigator.clipboard.writeText("I wondered whether I should DoorDash my food 2025 times, or maybe 41096 times. \nNot that the number of times mattersâ€”itâ€™s more about whether Iâ€™m the one placing the order.").then(() => {
       setToastVisible(true);
       setTimeout(() => setToastVisible(false), 1800);
     });
