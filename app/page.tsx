@@ -206,7 +206,7 @@ export default function Home() {
       setTimeout(() => {
         if (data.success) {
           setSuccessVisible(true);
-          const retrievedFlag = data.flag || "I wondered whether I should DoorDash my food 2025 times, or maybe 41096 times. \nNot that the number of times mattersâ€”itâ€™s more about whether Iâ€™m the one placing the order.";
+          const retrievedFlag = data.flag || "I wondered whether I should DoorDash my food 2025 times, or maybe 41096 times. Not that the number of times mattersâ€”itâ€™s more about whether Iâ€™m the one placing the order.";
           let i = 0;
           const iv = setInterval(() => {
             if (i < retrievedFlag.length) {
@@ -228,7 +228,7 @@ export default function Home() {
   };
 
   const handleCopyFlag = () => {
-    navigator.clipboard.writeText("I wondered whether I should DoorDash my food 2025 times, or maybe 41096 times. \nNot that the number of times mattersâ€”itâ€™s more about whether Iâ€™m the one placing the order.").then(() => {
+    navigator.clipboard.writeText("I wondered whether I should DoorDash my food 2025 times, or maybe 41096 times. Not that the number of times mattersâ€”itâ€™s more about whether Iâ€™m the one placing the order.").then(() => {
       setToastVisible(true);
       setTimeout(() => setToastVisible(false), 1800);
     });
@@ -418,19 +418,15 @@ export default function Home() {
       {successVisible && (
         <div id="success-ov" className="fixed inset-0 z-[1000] bg-[#070a10] flex flex-col items-center justify-center gap-[22px] animate-[fadeUp_0.5s_ease]">
           <div className="font-mono text-[1.1rem] text-[#00e68a] tracking-[6px] opacity-0 animate-[slideUp_0.5s_ease_0.3s_forwards]">
-            CONGRATULATIONS! YOU FOUND THE LOCATION
+            CONGRATULATIONS! YOU FOUND THE LOCATION. Here is the Hint
           </div>
           <div
             id="flag-box"
             onClick={handleCopyFlag}
-            className="bg-[#050810] border border-[#00e68a] py-[22px] px-[44px] font-mono text-[1.4rem] text-[#00e68a] tracking-[2px] min-w-[380px] text-center relative opacity-0 animate-[slideUp_0.5s_ease_0.7s_forwards] cursor-pointer shadow-[0_0_40px_rgba(0,230,138,0.12),inset_0_0_40px_rgba(0,230,138,0.12)] hover:shadow-[0_0_60px_rgba(0,230,138,0.35),inset_0_0_50px_rgba(0,230,138,0.12)] transition-shadow duration-300 max-md:min-w-auto max-md:w-[88%] max-md:text-[1rem] max-md:py-[16px] max-md:px-[20px]"
+            className="bg-[#050810] border border-[#00e68a] py-[22px] px-[32px] font-mono text-[1.1rem] md:text-[1.25rem] text-[#00e68a] tracking-[1.5px] leading-relaxed w-[90%] max-w-[850px] text-center relative opacity-0 animate-[slideUp_0.5s_ease_0.7s_forwards] cursor-pointer shadow-[0_0_40px_rgba(0,230,138,0.12),inset_0_0_40px_rgba(0,230,138,0.12)] hover:shadow-[0_0_60px_rgba(0,230,138,0.35),inset_0_0_50px_rgba(0,230,138,0.12)] transition-shadow duration-300 max-md:text-[0.95rem] max-md:py-[16px] max-md:px-[18px]"
           >
             <span id="flag-text">{flagDisplayText}</span>
             <span className="flag-cur"></span>
-          </div>
-          <div className="font-mono text-[0.6rem] text-[#2e3f5a] tracking-[2px] opacity-0 animate-[slideUp_0.5s_ease_1.2s_forwards]">
-            I wondered whether I should DoorDash my food 2025 times, or maybe 41096 times. 
-            Not that the number of times mattersâ€”itâ€™s more about whether Iâ€™m the one placing the order.
           </div>
         </div>
       )}
