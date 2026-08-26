@@ -418,7 +418,7 @@ export default function Home() {
       {successVisible && (
         <div id="success-ov" className="fixed inset-0 z-[1000] bg-[#070a10] flex flex-col items-center justify-center gap-[22px] animate-[fadeUp_0.5s_ease]">
           <div className="font-mono text-[1.1rem] text-[#00e68a] tracking-[6px] opacity-0 animate-[slideUp_0.5s_ease_0.3s_forwards]">
-            DECRYPTION SUCCESSFUL
+            CONGRATULATIONS! YOU FOUND THE LOCATION
           </div>
           <div
             id="flag-box"
@@ -429,7 +429,8 @@ export default function Home() {
             <span className="flag-cur"></span>
           </div>
           <div className="font-mono text-[0.6rem] text-[#2e3f5a] tracking-[2px] opacity-0 animate-[slideUp_0.5s_ease_1.2s_forwards]">
-            CLICK FLAG TO COPY
+            I wondered whether I should DoorDash my food 2025 times, or maybe 41096 times. 
+            Not that the number of times mattersâ€”itâ€™s more about whether Iâ€™m the one placing the order.
           </div>
         </div>
       )}
