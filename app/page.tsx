@@ -26,7 +26,7 @@ const CONFIG = {
   canZoom: false,
   canPan: false,
   difficulty: "easy",
-  start_message: "WELCOME AGENT. WE HAVE DETECTED AN ENEMY COMMUNICATIONS NODE AT AN UNKNOWN SATELLITE COORDINATE. ANALYZE THE INTERCEPTED SATELLITE IMAGERY CAREFULLY AND TRIANGULATE THE EXACT GEOSPATIAL LOCATION. TIME IS OF THE ESSENCE."
+  start_message: "Wowâ€¦ you actually found it?\n\nBut the real test begins now.\n\nHidden within this game is the answer to something I secretly concealed while working for this company. If youâ€™re determined to uncover the truth, thereâ€™s only one task:\n\n**Find the location hidden somewhere in the world.**\n\nOnce you discover it, Iâ€™ll reveal the secretâ€”and tell you exactly what I hid.\n\nGood luck. Youâ€™re going to need it."
 };
 
 function MapClickHandler({ onMapClick, submitted }: { onMapClick: (latlng: { lat: number; lng: number }) => void; submitted: boolean }) {
@@ -90,7 +90,7 @@ export default function Home() {
     const n = new Date();
     const p = (v: number) => String(v).padStart(2, '0');
     setTimestamp(
-      \-\-\ \:\:\ UTC
+      `${n.getFullYear()}-${p(n.getMonth() + 1)}-${p(n.getDate())} ${p(n.getHours())}:${p(n.getMinutes())}:${p(n.getSeconds())} UTC`
     );
 
     import('leaflet').then((L) => {
@@ -170,7 +170,7 @@ export default function Home() {
     const player_guessed_latitude = latlng.lat;
     const player_guessed_longitude = latlng.lng;
     setGuessPos([player_guessed_latitude, player_guessed_longitude]);
-    setHintText(GUESS: \, \);
+    setHintText(`GUESS: ${player_guessed_latitude.toFixed(4)}, ${player_guessed_longitude.toFixed(4)}`);
     setHintActive(true);
   };
 
@@ -322,7 +322,9 @@ export default function Home() {
       {/* Init Screen */}
       <div
         id="init-screen"
-        className={ixed inset-0 z-[9999] bg-[#070a10] flex flex-col items-center justify-center gap-6 transition-opacity duration-600 \}
+        className={`fixed inset-0 z-[9999] bg-[#070a10] flex flex-col items-center justify-center gap-6 transition-opacity duration-600 ${
+          initDone ? 'opacity-0 pointer-events-none' : 'opacity-100'
+        }`}
       >
         <div className="font-mono text-[1.6rem] tracking-[8px] text-[#00e68a]">GEOSINT</div>
         <div className="w-[240px] h-[2px] bg-[#172038] rounded-[2px] overflow-hidden">
@@ -352,7 +354,7 @@ export default function Home() {
             >
               <i className="fa-solid fa-download"></i> DOWNLOAD IMAGE
             </a>
-            <span className={ont-mono text-[0.65rem] tracking-[3px] px-[14px] py-[3px] border rounded-[2px] uppercase \}>
+            <span className={`font-mono text-[0.65rem] tracking-[3px] px-[14px] py-[3px] border rounded-[2px] uppercase ${CONFIG.difficulty === 'easy' ? 'text-[#00e68a] border-[#00e68a] bg-[rgba(0,230,138,0.12)]' : CONFIG.difficulty === 'medium' ? 'text-[#f59e0b] border-[#f59e0b] bg-[rgba(245,158,11,0.1)]' : 'text-[#ff2d55] border-[#ff2d55] bg-[rgba(255,45,85,0.12)]'}`}>
               {CONFIG.difficulty}
             </span>
           </div>
@@ -362,7 +364,7 @@ export default function Home() {
           <div id="image-panel" className="relative overflow-hidden bg-black border-r border-[#172038] max-md:border-r-0 max-md:border-b max-md:border-[#172038]">
             <div
               ref={imgWrapRef}
-              className={w-full h-full overflow-hidden relative \ \}
+              className={`w-full h-full overflow-hidden relative ${CONFIG.canPan ? 'cursor-grab' : ''} ${panning ? 'cursor-grabbing' : ''}`}
               onMouseDown={handleMouseDown}
             >
               {!imageLoaded && !imageError && (
@@ -379,9 +381,9 @@ export default function Home() {
                 alt="Challenge location"
                 onLoad={() => setImageLoaded(true)}
                 onError={() => setImageError(true)}
-                className={w-full h-full object-cover transform-origin-center transition-transform duration-75 select-none [-webkit-user-drag:none] \}
+                className={`w-full h-full object-cover transform-origin-center transition-transform duration-75 select-none [-webkit-user-drag:none] ${!CONFIG.canZoom && !CONFIG.canPan ? 'pointer-events-none' : ''}`}
                 style={{
-                  transform: 	ranslate(\px, \px) scale(\),
+                  transform: `translate(${iTx}px, ${iTy}px) scale(${iScale})`,
                 }}
               />
               <div className="scanl"></div>
@@ -409,7 +411,7 @@ export default function Home() {
         </main>
 
         <footer className="relative z-10 h-[58px] flex items-center justify-center gap-[18px] bg-[#0c1019] border-t border-[#172038]">
-          <span className={ont-mono text-[0.65px] tracking-[1px] transition-colors duration-300 text-[#2e3f5a] \}>
+          <span className={`font-mono text-[0.65px] tracking-[1px] transition-colors duration-300 text-[#2e3f5a] ${hintActive ? 'text-[#00b4d8]' : ''}`}>
             {hintText}
           </span>
           <button
@@ -462,7 +464,9 @@ export default function Home() {
       {/* Toast */}
       <div
         id="copy-toast"
-        className={ixed bottom-[30px] left-1/2 -translate-x-1/2 font-mono text-[0.7rem] text-[#00e68a] tracking-[2px] bg-[#111827] border border-[#00e68a] py-[8px] px-[20px] z-[2000] transition-all duration-300 ease-in-out pointer-events-none \}
+        className={`fixed bottom-[30px] left-1/2 -translate-x-1/2 font-mono text-[0.7rem] text-[#00e68a] tracking-[2px] bg-[#111827] border border-[#00e68a] py-[8px] px-[20px] z-[2000] transition-all duration-300 ease-in-out pointer-events-none ${
+          toastVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
+        }`}
       >
         COPIED TO CLIPBOARD
       </div>
