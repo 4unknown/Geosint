@@ -19,6 +19,9 @@ const shareTechMono = Share_Tech_Mono({
 export const metadata: Metadata = {
   title: "Geosint",
   description: "Geosint Challenge",
+  icons: {
+    icon: "/favicon.PNG",
+  },
 };
 
 export default function RootLayout({
