@@ -26,7 +26,7 @@ const CONFIG = {
   canZoom: false,
   canPan: false,
   difficulty: "easy",
-  start_message: "Wowâ€¦ you actually found it?\n\nBut the real test begins now.\n\nHidden within this game is the answer to something I secretly concealed while working for this company. If youâ€™re determined to uncover the truth, thereâ€™s only one task:\n\n**Find the location hidden somewhere in the world.**\n\nOnce you discover it, Iâ€™ll reveal the secretâ€”and tell you exactly what I hid.\n\nGood luck. Youâ€™re going to need it."
+  start_message: "Wowâ€¦ you actually found it?\n\nBut the real test begins now.\n\nHidden within this game is the answer to something I secretly concealed while working for this company. If youâ€™re determined to uncover the truth, thereâ€™s only one task:\n\nFind the location hidden somewhere in the world.\n\nOnce you discover it, Iâ€™ll reveal the secretâ€”and tell you exactly what I hid.\n\nGood luck. Youâ€™re going to need it."
 };
 
 function MapClickHandler({ onMapClick, submitted }: { onMapClick: (latlng: { lat: number; lng: number }) => void; submitted: boolean }) {
