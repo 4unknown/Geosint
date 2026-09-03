@@ -26,7 +26,7 @@ const CONFIG = {
   canZoom: false,
   canPan: false,
   difficulty: "easy",
-  start_message: "Wowâ€¦ you actually found it?\n\nBut the real test begins now.\n\nHidden within this game is the answer to something I secretly concealed while working for this company. If youâ€™re determined to uncover the truth, thereâ€™s only one task:\n\nFind the location hidden somewhere in the world.\n\nOnce you discover it, Iâ€™ll reveal the secretâ€”and tell you exactly what I hid.\n\nGood luck. Youâ€™re going to need it."
+  start_message: "Ok Now You are Here! \n\nBut the real test begins now.\n\nHidden within this game is the answer to something I secretly concealed while working for this company. If youâ€™re determined to uncover the truth, thereâ€™s only one task:\n\nFind the location hidden somewhere in the world.\n\nOnce you discover it, Iâ€™ll reveal the secretâ€”and tell you exactly what I hid.\n\nGood luck. Youâ€™re going to need it."
 };
 
 function MapClickHandler({ onMapClick, submitted }: { onMapClick: (latlng: { lat: number; lng: number }) => void; submitted: boolean }) {
@@ -392,7 +392,12 @@ export default function Home() {
           </div>
           <div id="map-panel" className="relative w-full h-full">
             <MapContainer center={[25, 10]} zoom={2} zoomControl={true} attributionControl={false} style={{ width: '100%', height: '100%', background: '#070a10' }}>
-              <TileLayer url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png" maxZoom={19} subdomains="abcd" />
+            <TileLayer
+              url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png?key=cb1_2v3m_1_c2c62688332feab4288f8a8d"
+              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>, &copy; <a href="https://carto.com/attributions">CARTO</a>'
+              subdomains="abcd"
+              maxZoom={20}
+            />
               <MapClickHandler onMapClick={handleMapClick} submitted={submitted} />
               {guessPos && guessIcon && <Marker position={guessPos} icon={guessIcon} />}
             </MapContainer>
