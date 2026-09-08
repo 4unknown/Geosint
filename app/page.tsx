@@ -21,12 +21,12 @@ const Marker = dynamic(
 //  CHALLENGE CONFIGURATION
 // ================================================================
 const CONFIG = {
-  imageUrl: "/Somewhere_Image.jpg",
-  Selected_Image: "location.jpg",
+  imageUrl: "/NorthSun.jpg",
+  Selected_Image: "NorthSun.jpg",
   canZoom: false,
   canPan: false,
   difficulty: "easy",
-  start_message: "Ok Now You are Here! \n\nBut the real test begins now.\n\nHidden within this game is the answer to something I secretly concealed while working for this company. If youâ€™re determined to uncover the truth, thereâ€™s only one task:\n\nFind the location hidden somewhere in the world.\n\nOnce you discover it, Iâ€™ll reveal the secretâ€”and tell you exactly what I hid.\n\nGood luck. Youâ€™re going to need it."
+  start_message: "Ok Now You are Here! \n\nBut the real test begins now.\n\nHidden within this game is the answer to something I secretly concealed while working for this company. If you are determined to uncover the truth, there is only one task:\n\nFind the location hidden somewhere in the world.\n\nOnce you discover it, It will reveal the secret and tell you exactly what I hid.\n\nGood luck. You are going to need it."
 };
 
 function MapClickHandler({ onMapClick, submitted }: { onMapClick: (latlng: { lat: number; lng: number }) => void; submitted: boolean }) {
@@ -206,7 +206,7 @@ export default function Home() {
       setTimeout(() => {
         if (data.success) {
           setSuccessVisible(true);
-          const retrievedFlag = data.flag || "I wondered whether I should DoorDash my food 2025 times, or maybe 41096 times. Not that the number of times mattersâ€”itâ€™s more about whether Iâ€™m the one placing the order.";
+          const retrievedFlag = data.flag || "I wondered whether I should DoorDash my food 2025 times, or maybe 41096 times. Not that the number of times matters it's more about whether I'm the one placing the order.";
           let i = 0;
           const iv = setInterval(() => {
             if (i < retrievedFlag.length) {
@@ -228,7 +228,7 @@ export default function Home() {
   };
 
   const handleCopyFlag = () => {
-    navigator.clipboard.writeText("I wondered whether I should DoorDash my food 2025 times, or maybe 41096 times. Not that the number of times mattersâ€”itâ€™s more about whether Iâ€™m the one placing the order.").then(() => {
+    navigator.clipboard.writeText("I wondered whether I should DoorDash my food 2025 times, or maybe 41096 times. Not that the number of times matters it's more about whether I'm the one placing the order.").then(() => {
       setToastVisible(true);
       setTimeout(() => setToastVisible(false), 1800);
     });

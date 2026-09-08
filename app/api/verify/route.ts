@@ -4,7 +4,7 @@ import { NextResponse } from 'next/server';
 const Image_Latitude = -31.7952611;
 const Image_Longitude = 115.9081024;
 const selected_km_distance_for_success = 100;
-const flag = "I wondered whether I should DoorDash my food 2025 times, or maybe 41096 times. Not that the number of times mattersâ€”itâ€™s more about whether Iâ€™m the one placing the order.";
+const flag = "I wondered whether I should DoorDash my food 2025 times, or maybe 41096 times. Not that the number of times matters it's more about whether I'm the one placing the order.";
 
 // Haversine formula calculation helper
 function haversine(lat1: number, lon1: number, lat2: number, lon2: number) {
