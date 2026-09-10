@@ -21,7 +21,7 @@ const Marker = dynamic(
 //  CHALLENGE CONFIGURATION
 // ================================================================
 const CONFIG = {
-  imageUrl: "/NorthSun.jpg",
+  imageUrl: "/NorthSun.webp",
   Selected_Image: "NorthSun.jpg",
   canZoom: false,
   canPan: false,
